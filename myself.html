@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Bebeloves?</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe4e1, #ffcbf2);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px #ffa7c4;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        button {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            width: 200px;
+        }
+
+        .yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .no {
+            background-color: #f5a623;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 30px;
+            text-shadow: 2px 2px #ff69b4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message span {
+            margin: 0 15px;
+        }
+
+        footer {
+            font-size: 2rem;
+            color: #fff;
+            position: absolute;
+            bottom: 20px;
+            text-shadow: 2px 2px #ff69b4;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            position: absolute;
+            animation: float 5s infinite;
+            clip-path: polygon(50% 0%, 61% 13%, 75% 25%, 89% 38%, 100% 50%, 94% 64%, 85% 75%, 75% 85%, 50% 100%, 25% 85%, 15% 75%, 6% 64%, 0% 50%, 11% 38%, 25% 25%, 39% 13%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Bebeloves? 💖</h1>
+    <div class="buttons">
+        <button class="yes" onclick="sayYes()">Yes 💕</button>
+        <button class="no" onclick="moveNo()">No 😢</button>
+    </div>
+    <div class="message" id="message">
+        <span>💖</span><span>You are now my sugarplum honeybunch! 🍯💖</span><span>💖</span>
+    </div>
+    <footer>
+        Sa puso ni Mr. Mendoza 💕
+    </footer>
+
+    <div class="hearts" id="hearts"></div>
+
+    <script>
+        const noButton = document.querySelector('.no');
+
+        function moveNo() {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        function sayYes() {
+            const message = document.getElementById('message');
+            message.innerHTML = "<span>💖</span>You are now my sugarplum honeybunch! 🍯💖<span>💖</span>";
+        }
+
+        function createHeart() {
+            const heartsContainer = document.getElementById('hearts');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
